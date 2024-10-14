@@ -1,0 +1,125 @@
+.app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the content */
+    margin: 20px; /* Space around the container */
+  }
+  
+  .app-title {
+    font-size: 2em; /* Increase title font size */
+    margin-bottom: 20px; /* Space between title and components */
+  }
+  
+  .component-container {
+    display: flex; /* Align components side by side */
+    justify-content: center; /* Center the components */
+    width: 100%; /* Full width */
+  }
+  
+  .icon-container {
+    display: flex; /* Arrange icons in a row */
+    justify-content: center; /* Center icons horizontally */
+    gap: 20px; /* Space between icons */
+    margin: 20px; /* Space around the icons */
+    align-items: center;
+  }
+  
+  .icon {
+    cursor: pointer; /* Change cursor to pointer for clickable icons */
+    transition: transform 0.2s; /* Add transition for hover effect */
+  }
+  
+  .icon:hover {
+    transform: scale(1.1); /* Scale up the icon slightly on hover */
+  }
+  
+  .icon-image {
+    width: 80px; /* Set consistent width for both icons */
+    height: 80px; /* Set consistent height for both icons */
+  }
+  
+  /* Specific class for Stopwatch icon to make it smaller */
+  .stopwatch-image {
+    width: 80px; /* Reduced width for Stopwatch icon */
+    height: 80px; /* Reduced height for Stopwatch icon */
+  }
+  
+  /* Additional styles for Stopwatch and Alarm components if needed */
+  .stopwatch-container,
+  .alarm-container {
+    display: flex; /* Use flexbox for alignment */
+    flex-direction: column; /* Stack the components vertically */
+    align-items: center; /* Center the components */
+    margin: 10px; /* Space around the components */
+  }
+  
+  /* src/style/timeManagement.css */
+
+.icon-container {
+  display: flex; /* Arrange icons in a row */
+  justify-content: center; /* Center icons horizontally */
+  gap: 20px; /* Space between icons */
+}
+
+.icon {
+  cursor: pointer; /* Show pointer on hover */
+  transition: transform 0.2s; /* Smooth hover effect */
+}
+
+.icon:hover {
+  transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+/* Ensure both icons are the same size */
+.icon-image {
+  width: 80px; /* Set consistent width for both icons */
+  height: 80px; /* Set consistent height for both icons */
+}
+
+.icon-container {
+  display: flex; /* Arrange icons in a row */
+  justify-content: center; /* Center icons horizontally */
+  gap: 20px; /* Space between icons */
+}
+
+.icon {
+  cursor: pointer; /* Show pointer on hover */
+  transition: transform 0.2s; /* Smooth hover effect */
+}
+
+.icon:hover {
+  transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+/* Ensure both icons are the same size */
+.icon-image {
+  width: 80px; /* Set consistent width for both icons */
+  height: 80px; /* Set consistent height for both icons */
+  object-fit: contain; /* Ensure SVG fits within the defined size */
+  display: block; /* Remove any default inline spacing for images */
+}
+
+/* Specific styles for Stopwatch */
+.stopwatch-icon {
+  width: 80px; /* Explicit width */
+  height: 80px; /* Explicit height */
+  object-fit: contain; /* Maintain aspect ratio within the size */
+}
+
+/* Specific styles for Alarm */
+.alarm-icon {
+  width: 80px; /* Explicit width */
+  height: 80px; /* Explicit height */
+  object-fit: contain; /* Maintain aspect ratio within the size */
+}
+
+
+.alarm-icon {
+  width: 91px; /* Set new width for Alarm */
+  height: 91px; /* Set new height for Alarm */
+}
+
+.stopwatch-icon {
+  width: 80px; /* Keep the Stopwatch icon smaller if desired */
+  height: 80px;
+}

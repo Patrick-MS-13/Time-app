@@ -1,0 +1,315 @@
+body {
+  background-color: #f8f9fa; /* Light background color for contrast */
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+html, body {
+  height: 100%; /* Make sure the body takes full height */
+  margin: 0; /* Remove default margin */
+  display: flex; /* Use flexbox layout */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  background-color: #f0f0f000; /* Optional: background color */
+}
+
+.container {
+  /* Optional styling for your container */
+  width: 90%; /* Adjust width as needed */
+  max-width: 600px; /* Set a max width */
+  padding: 20px; /* Add some padding */
+  border-radius: 10px; /* Optional: rounded corners */
+  background-color: rgba(255, 255, 255, 0); /* Semi-transparent background */
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2); /* Optional: shadow for depth */
+}
+
+
+.timeDisplay {
+  margin-top: 20px; /* Space above the time display */
+  color: #333; /* Dark color for better readability */
+}
+
+.input, .time-picker {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin: 10px 0;
+  width: 100%; /* Full width for better appearance */
+  transition: border-color 0.3s ease; /* Smooth transition on focus */
+}
+
+.input:focus, .time-picker:focus {
+  border-color: #007bff; /* Change border color on focus */
+  outline: none; /* Remove default outline */
+}
+
+.button {
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+  background-color: #007bff; /* Primary button color */
+  color: #fff; /* Text color for button */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Add transform for button */
+}
+
+.button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.message {
+  color: red; /* Red color for error messages */
+  margin-top: 10px; /* Space above messages */
+}
+
+.notification {
+  position: fixed;
+  top: 20px; /* Position from the top of the viewport */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, 0); /* Adjust only horizontally */
+  background-color: #ffcc00; /* Background color for the notification */
+  color: #000; /* Text color for notification */
+  padding: 15px 20px; /* Add some padding for better appearance */
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Optional: Add shadow for depth */
+  z-index: 1000; /* Ensure it's on top of other content */
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth fade out and transform */
+  width: auto; /* Use auto width for the notification */
+  max-width: 90%; /* Limit maximum width to 90% of the viewport */
+  text-align: center; /* Center text inside */
+}
+
+/* For the slide-in effect */
+.notification.slide-in {
+  transform: translate(-50%, -10px); /* Adjusted for slide-in effect */
+}
+
+/* To ensure the notification is fully visible on smaller screens */
+@media (max-width: 480px) {
+  .notification {
+    width: 90%; /* Ensure it doesn't exceed the screen width */
+    left: 5%; /* Add some margin from the sides */
+    right: 5%; /* Add some margin from the sides */
+  }
+}
+
+
+/* Slider Container */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px; /* Adjust width as needed */
+  height: 34px; /* Adjust height as needed */
+}
+
+/* Hide the default checkbox */
+.switch input {
+  opacity: 0; /* Hide the checkbox */
+  width: 0; /* Prevent width */
+  height: 0; /* Prevent height */
+}
+
+/* Slider Background */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(204, 204, 204, 0.7); /* Slightly transparent background for the off state */
+  transition: .4s; /* Transition effect */
+  border-radius: 34px; /* Round borders for the slider */
+}
+
+/* Knob */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px; /* Keep height */
+  width: 18px; /* Keep width */
+  left: 2px; /* Adjust position as needed */
+  top: 2px;
+  bottom: 1px; /* Adjust position as needed */
+  background-color: white; /* Knob color */
+  transition: .4s; /* Transition effect */
+  border-radius: 50%; /* Make the knob round */
+}
+
+/* Checked state */
+input:checked + .slider {
+  background-color: rgba(76, 175, 80, 0.7); /* Background color when checked */
+}
+
+/* Move the knob when checked */
+input:checked + .slider:before {
+  transform: translateX(26px); /* Move knob to the right */
+}
+
+/* Glassy effect for list items */
+.glassy-effect {
+  background: rgba(255, 255, 255, 0.3); /* Semi-transparent background */
+  border-radius: 8px; /* Rounded corners */
+  backdrop-filter: blur(10px); /* Blurring effect */
+  padding: 10px; /* Padding around the text */
+  margin: 5px 0; /* Margin for spacing */
+  transition: transform 0.2s ease; /* Smooth transition */
+}
+
+.glassy-effect:hover {
+  transform: scale(1.02); /* Slightly enlarge on hover */
+}
+
+/* Style for unordered lists */
+ul {
+  list-style-type: none; /* Remove default list markers */
+  padding: 0;           /* Remove default padding */
+  margin: 0;            /* Remove default margin */
+}
+
+.alarm-list {
+  max-height: 300px; /* Set a maximum height for the list */
+  overflow-y: auto; /* Enable vertical scrolling */
+  border: 1px solid #ccc; /* Optional: add a border for visibility */
+  border-radius: 8px; /* Optional: rounded corners */
+  padding: 10px; /* Optional: padding inside the list */
+  margin-top: 20px; /* Space above the list */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    width: 90%; /* Full width on small screens */
+    margin: 20px auto; /* Center with reduced margin */
+  }
+
+  .timeDisplay {
+    font-size: 1.5em; /* Smaller font size for current time */
+  }
+
+  .input, .time-picker {
+    font-size: 1em; /* Adjust font size */
+  }
+
+  .button {
+    padding: 8px 12px; /* Adjust button size */
+  }
+
+  .glassy-title {
+    font-size: 2em; /* Smaller title size on small screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .timeDisplay {
+    font-size: 1.2em; /* Even smaller font size for very small screens */
+  }
+
+  .button {
+    padding: 6px 10px; /* Further adjust button size */
+  }
+
+  .glassy-title {
+    font-size: 1.5em; /* Smaller title size on mobile */
+  }
+}
+
+.timeDisplay {
+  font-family: 'Arial', sans-serif; /* Change to any suitable font family */
+  text-align: center; /* Center align the time display */
+}
+
+.timeDisplay h4 {
+  font-size: 2em;
+}
+
+.timeDisplay .ampm {
+  font-size: 0.5em; /* Smaller size for AM/PM */
+}
+
+.round-checkbox {
+  display: inline-block;
+  width: 24px; /* Adjust the size of the checkbox */
+  height: 24px; /* Adjust the size of the checkbox */
+  position: relative;
+}
+
+.round-checkbox input {
+  opacity: 0; /* Hide the actual checkbox */
+  position: absolute; /* Keep it accessible */
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%; /* Make it round */
+  background-color: #fff; /* Change this to the desired background color */
+  border: 2px solid #ff0000; /* Adjust border color */
+  transition: background-color 0.2s, border 0.2s;
+}
+
+.round-checkbox input:checked + .checkmark {
+  background-color: #ff0000; /* Change the color when checked */
+  border: 2px solid #000000; /* Adjust border color when checked */
+}
+
+.glassy-title {
+  font-size: 3em; /* Adjust size as needed */
+  font-weight: bold; /* Make the text bold */
+  color: white; /* Base color of the text */
+  background: linear-gradient(90deg, #6a9cff, #1e2e77); /* Gradient color */
+  -webkit-background-clip: text; /* Clip background to text */
+  -webkit-text-fill-color: transparent; /* Make text transparent to show the background */
+  text-shadow: 
+    0 0 5px rgba(255, 255, 255, 0.8), /* White glow */
+    0 0 10px rgba(255, 255, 255, 0.6), /* White glow */
+     0 0 15px rgba(0, 0, 0, 0.3); /* Slight black shadow for depth */
+  letter-spacing: 1px; /* Add space between letters */
+  text-align: center; /* Center the text */
+  margin: 20px 0; /* Add margin for spacing */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  height: 100vh; /* Make the container full height */
+  padding: 20px; /* Add some padding if needed */
+}
+
+.button {
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+  padding: 10px 20px; /* Top/bottom and left/right padding */
+  text-align: center; /* Center text */
+  text-decoration: none; /* No underline */
+  display: inline-block; /* Make it an inline-block element */
+  font-size: 16px; /* Font size */
+  margin: 4px 2px; /* Margin around the button */
+  cursor: pointer; /* Pointer cursor on hover */
+  border-radius: 5px; /* Rounded corners */
+  backdrop-filter: blur(10px); /* Apply a blur effect for glassy appearance */
+  transition: background 0.3s, transform 0.1s, border 0.3s; /* Smooth transition for hover effects */
+}
+
+.button:hover {
+  background: rgba(255, 255, 255, 0); /* Slightly darker background on hover */
+  border: 1px solid rgba(255, 255, 255, 0.5); /* Darker border on hover */
+}
+
+.button:active {
+  transform: scale(0.95); /* Slightly scale down when clicked */
+}
+
+.button-container {
+  display: flex; /* Use Flexbox */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically (if height is set) */
+  margin-top: 20px; /* Optional: Add some space above the button */
+  flex-wrap: wrap;
+}
+

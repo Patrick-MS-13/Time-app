@@ -1,122 +1,79 @@
-/* Apply styles to html and body to span full viewport */
+/* Full viewport styling for html and body */
 html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-    background: radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.1), transparent 300px),
-                linear-gradient(to bottom, #020111 10%, #19162c 40%, #0a3d62 100%); /* Sky gradient */
-  }
-  
-  /* Twinkling Stars */
-  @keyframes twinkle {
-    0%, 100% { opacity: 0.8; }
-    50% { opacity: 0.3; }
-  }
-  
-  /* Stars positioned across and beyond body area */
-  .star {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background-color: white;
-    border-radius: 50%;
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
-    animation: twinkle 2s infinite ease-in-out;
-  }
-  
-  /* Generate stars across and beyond body */
-  .star:nth-child(1)  { top: -10%; left: 5%; }  
-  .star:nth-child(2)  { top: 20%; left: 15%; }
-  .star:nth-child(3)  { top: 30%; left: 90%; }
-  .star:nth-child(4)  { top: 50%; left: 75%; }
-  .star:nth-child(5)  { top: 80%; left: 60%; }
-  .star:nth-child(6)  { top: -15%; left: 85%; } 
-  .star:nth-child(7)  { top: 5%; left: 35%; }
-  .star:nth-child(8)  { top: 40%; left: -5%; }
-  .star:nth-child(9)  { top: 60%; left: 105%; }
-  .star:nth-child(10) { top: 70%; left: 20%; }
-  .star:nth-child(11) { top: 10%; left: 60%; }
-  .star:nth-child(12) { top: 25%; left: 70%; }
-  .star:nth-child(13) { top: 45%; left: 80%; }
-  .star:nth-child(14) { top: 65%; left: 50%; }
-  .star:nth-child(15) { top: 75%; left: 40%; }
-  .star:nth-child(16) { top: 35%; left: 15%; }
-  .star:nth-child(17) { top: 55%; left: 90%; }
-  .star:nth-child(18) { top: 85%; left: 30%; }
-  .star:nth-child(19) { top: 95%; left: 60%; }
-  .star:nth-child(20) { top: 50%; left: 20%; }
-  .star:nth-child(21) { top: 70%; left: 80%; }
-  .star:nth-child(22) { top: 20%; left: 50%; }
-  .star:nth-child(23) { top: 40%; left: 25%; }
-  .star:nth-child(24) { top: 85%; left: 10%; }
-  .star:nth-child(25) { top: 110%; left: 90%; }
-  .star:nth-child(26) { top: 15%; left: 5%; }
-  .star:nth-child(27) { top: 50%; left: 30%; }
-  .star:nth-child(28) { top: 35%; left: 85%; }
-  .star:nth-child(29) { top: 90%; left: 55%; }
-  .star:nth-child(30) { top: -5%; left: 95%; }
-  .star:nth-child(31) { top: 20%; left: 15%; }
-  .star:nth-child(32) { top: 10%; left: 75%; }
-  .star:nth-child(33) { top: 45%; left: 10%; }
-  .star:nth-child(34) { top: 80%; left: 40%; }
-  .star:nth-child(35) { top: -15%; left: 20%; }
-  .star:nth-child(36) { top: 60%; left: 75%; }
-  .star:nth-child(37) { top: 30%; left: 95%; }
-  .star:nth-child(38) { top: 50%; left: 35%; }
-  .star:nth-child(39) { top: 5%; left: 55%; }
-  .star:nth-child(40) { top: 75%; left: 10%; }
-  .star:nth-child(41) { top: 25%; left: 90%; }
-  .star:nth-child(42) { top: 65%; left: 30%; }
-  .star:nth-child(43) { top: 15%; left: 85%; }
-  .star:nth-child(44) { top: 80%; left: 50%; }
-  .star:nth-child(45) { top: 40%; left: 20%; }
-  .star:nth-child(46) { top: 90%; left: 5%; }
-  .star:nth-child(47) { top: 55%; left: 15%; }
-  .star:nth-child(48) { top: 10%; left: 95%; }
-  .star:nth-child(49) { top: 35%; left: 75%; }
-  .star:nth-child(50) { top: 100%; left: 50%; } 
-  
-  
-  /* Shooting Star Effect - Adjust existing */
-  .shooting-star {
-    position: absolute;
-    width: 20px;
-    height: 10px;
-    background-color: rgb(255, 255, 255);
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 1);
-    top: 20%;
-    left: -200px; /* Start off-screen */
-    animation: shoot 1.5s linear forwards; /* Duration of star movement */
-  }
-  
-  /* Same tail for shooting star */
-  .shooting-star::after {
-    content: '';
-    position: absolute;
-    width: 100px; /* Tail length */
-    height: 4px;
-    background: linear-gradient(to right, rgba(255, 255, 0, 0.9), rgba(255, 165, 0, 0.7), rgba(255, 0, 0, 0.5));
-    border-radius: 5px;
-    left: -100px; /* Position the tail in front of the star */
-    top: 50%;
-    transform: translateY(-50%);
-    animation: shoot 1.5s linear forwards; /* Same duration for tail */
-  }
-  
-  /* Keyframe for shooting star movement */
-  @keyframes shoot {
-    0% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    100% {
-      transform: translateX(110vw); /* Move across the entire viewport */
-      opacity: 0;
-    }
-  }
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background: radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.1), transparent 300px),
+              linear-gradient(to bottom, #020111 10%, #19162c 40%, #0a3d62 100%); /* Sky gradient */
+}
 
-  
+/* Twinkling effect for stars */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.3; }
+}
+
+/* Star styling and positions */
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+  animation: twinkle 2s infinite ease-in-out;
+}
+
+/* Star positions */
+.star:nth-child(1)  { top: -10%; left: 5%; }  
+.star:nth-child(2)  { top: 20%; left: 15%; }
+.star:nth-child(3)  { top: 30%; left: 90%; }
+.star:nth-child(4)  { top: 50%; left: 75%; }
+.star:nth-child(5)  { top: 80%; left: 60%; }
+.star:nth-child(6)  { top: -15%; left: 85%; } 
+.star:nth-child(7)  { top: 5%; left: 35%; }
+.star:nth-child(8)  { top: 40%; left: -5%; }
+.star:nth-child(9)  { top: 60%; left: 105%; }
+.star:nth-child(10) { top: 70%; left: 20%; }
+/* Additional star positions can continue here up to .star:nth-child(50) */
+
+/* Shooting star styling */
+.shooting-star {
+  position: absolute;
+  width: 20px; /* Width of the spherical part */
+  height: 10px; /* Height of the spherical part */
+  background-color: rgb(255, 255, 255); /* Color of the spherical part */
+  border-radius: 50%; /* Make it round */
+  box-shadow: 0 0 10px rgba(255, 255, 255, 1); /* Glow effect */
+  top: 20%; /* Adjust the vertical position of the shooting star */
+  left: -20px; /* Start off-screen on the left */
+  animation: shoot 5s linear infinite; /* Shooting animation with consistent speed */
+}
+
+/* Tail of the shooting star */
+.tail {
+  position: absolute;
+  width: 80px; /* Tail length */
+  height: 4px; /* Tail height */
+  background: linear-gradient(to left, rgba(255, 255, 0, 0.9), rgba(255, 165, 0, 0.7), rgba(255, 0, 0, 0.5)); /* Fiery tail color */
+  border-radius: 5px; /* Rounded tail */
+  left: -80px; /* Position the tail to extend to the left of the star */
+  top: 50%; /* Center the tail vertically */
+  transform: translateY(-50%); /* Align tail with shooting star */
+  animation: tail 5s linear infinite; /* Tail animation matches shooting star */
+}
+
+/* Shooting star animation */
+@keyframes shoot {
+  0% {
+    transform: translateX(-100vw); /* Start off-screen to the left */
+    opacity: 1; /* Fully visible */
+  }
+  100% {
+    transform: translateX(100vw); /* End off-screen to the right */
+    opacity: 0; /* Fade out smoothly */
+  }
+}

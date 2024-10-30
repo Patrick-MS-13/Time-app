@@ -1,44 +1,73 @@
-// src/component/TimeManagement.js
-import React, { useState } from 'react';
-import Stopwatch from './Stopwatch';
-import Alarm from './Alarm';
-import stopwatchIcon from '../img/stopwatch-svgrepo-com.svg'; // Adjust the path if needed
-import alarmIcon from '../img/alarm-plus-svgrepo-com.svg'; // Adjust the path if needed
-import './../style/timeManagement.css'; // Import a CSS file for styles
+import React, { useState } from "react";
+import StopwatchIcon from "./../img/stopwatch-svgrepo-com.svg"; // Import Stopwatch icon
+import AlarmIcon from "./../img/alarm-plus-svgrepo-com.svg"; // Import Alarm icon
+import TimeZonePickerIcon from "./../img/map-time-svgrepo-com.svg"; // Import TimeZonePicker icon
+import TimeReminderIcon from "./../img/time-alert-2-svgrepo-com.svg"; // Import TimeReminder icon
+import './../style/timeManagement.css'; // Import your CSS for styling
+import Stopwatch from './Stopwatch'; // Import the Stopwatch component
+import Alarm from './Alarm'; // Import the Alarm component
+import TimeZonePicker from './TimeZonePicker'; // Import the TimeZonePicker component
+import TimeReminder from './TimeReminder'; // Import the TimeReminder component
+import Background from './Background'; // Import Background component
 
 const TimeManagement = () => {
-  const [showStopwatch, setShowStopwatch] = useState(false); // Initially hide Stopwatch
-  const [showAlarm, setShowAlarm] = useState(false); // Initially hide Alarm
+    const [currentTool, setCurrentTool] = useState(null); // Track the current selected tool
 
-  const handleStopwatchClick = () => {
-    setShowStopwatch(true); // Show Stopwatch when clicked
-    setShowAlarm(false); // Hide Alarm
-  };
+    // Function to handle tool selection
+    const handleToolSelect = (tool) => {
+        setCurrentTool(tool); // Set the current tool to the selected one
+    };
 
-  const handleAlarmClick = () => {
-    setShowAlarm(true); // Show Alarm when clicked
-    setShowStopwatch(false); // Hide Stopwatch
-  };
+    return (
+        <div className="app-container"> {/* Updated class for styling */}
+            <Background /> {/* Include Background component for stars and moon */}
+            
+            {/* Conditionally render the "Time Management App" title only when no tool is selected */}
+            {!currentTool && <h1 className="app-title">Time Management App</h1>}
 
-  return (
-    <div className="component-container">
-      {/* Directly show the selected component based on the SVG click */}
-      {showStopwatch && <Stopwatch />} {/* Render Stopwatch if active */}
-      {showAlarm && <Alarm />} {/* Render Alarm if active */}
-
-      {/* If neither component is visible, show the icons */}
-      {!showStopwatch && !showAlarm && (
-        <div className="icon-container">
-          <div className="icon" onClick={handleStopwatchClick}>
-            <img src={stopwatchIcon} alt="Stopwatch" className="icon-image stopwatch-icon" />
-          </div>
-          <div className="icon" onClick={handleAlarmClick}>
-            <img src={alarmIcon} alt="Alarm" className="icon-image alarm-icon" />
-          </div>
+            {/* Conditionally render the icons (main page) or the selected tool */}
+            {!currentTool ? (
+                <div className="icon-container"> {/* Updated class for styling */}
+                    {/* Icons for each tool */}
+                    <img
+                        src={StopwatchIcon} // Stopwatch icon
+                        alt="Stopwatch"
+                        title="Stopwatch" // Tooltip text
+                        className="tool-icon" // Updated class for styling
+                        onClick={() => handleToolSelect("stopwatch")}
+                    />
+                    <img
+                        src={AlarmIcon} // Alarm icon
+                        alt="Alarm"
+                        title="Alarm" // Tooltip text
+                        className="tool-icon" // Updated class for styling
+                        onClick={() => handleToolSelect("alarm")}
+                    />
+                    <img
+                        src={TimeZonePickerIcon} // TimeZonePicker icon
+                        alt="Time Zone Picker"
+                        title="Time Zone Picker" // Tooltip text
+                        className="tool-icon" // Updated class for styling
+                        onClick={() => handleToolSelect("timezonePicker")}
+                    />
+                    <img
+                        src={TimeReminderIcon} // TimeReminder icon
+                        alt="Time Reminder"
+                        title="Time Reminder" // Tooltip text
+                        className="tool-icon" // Updated class for styling
+                        onClick={() => handleToolSelect("timeReminder")}
+                    />
+                </div>
+            ) : (
+                <div className="component-container"> {/* Updated class for styling */}
+                    {currentTool === "stopwatch" && <Stopwatch />}
+                    {currentTool === "alarm" && <Alarm />}
+                    {currentTool === "timezonePicker" && <TimeZonePicker />}
+                    {currentTool === "timeReminder" && <TimeReminder />}
+                </div>
+            )}
         </div>
-      )}
-    </div>
-  );
+    );
 };
 
 export default TimeManagement;

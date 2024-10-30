@@ -218,6 +218,7 @@ ul {
 .timeDisplay {
   font-family: 'Arial', sans-serif; /* Change to any suitable font family */
   text-align: center; /* Center align the time display */
+  transition: transform 0.2s;
 }
 
 .timeDisplay h4 {
@@ -271,6 +272,7 @@ ul {
   letter-spacing: 1px; /* Add space between letters */
   text-align: center; /* Center the text */
   margin: 20px 0; /* Add margin for spacing */
+  /* display: none; */
 }
 
 .container {
@@ -313,3 +315,6 @@ ul {
   flex-wrap: wrap;
 }
 
+.timeDisplay:hover{
+  transform: scale(1.1);
+}

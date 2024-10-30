@@ -53,7 +53,7 @@ const Stopwatch = () => {
   };
 
   return (
-    <div className="container d-flex flex-column justify-content-center align-items-center min-vh-100">
+    <div className="container d-flex flex-column justify-content-center align-items-center">
       {!showStopwatch ? ( // Conditionally render SVG or stopwatch
         <div onClick={handleShowStopwatch} style={{ cursor: 'pointer' }}>
           <img src={stoptime} alt="Stopwatch" width={100} height={100} />

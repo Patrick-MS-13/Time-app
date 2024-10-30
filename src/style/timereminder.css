@@ -1,0 +1,142 @@
+.time-reminder-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+    padding: 20px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #fefefe;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+input[type="time"] {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.reminder-notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    padding: 15px;
+    border-radius: 5px;
+    background-color: yellow;
+    border: 1px solid black;
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    z-index: 1000;
+    opacity: 0;
+    transform: translate(-50%, -20px); /* Slide in from above */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reminder-notification.slide-in {
+    opacity: 1;
+    transform: translate(-50%, 0); /* Slide to original position */
+}
+
+.reminder-notification.reminder-active {
+    background-color: #ef8d8d; /* Light red for reminder */
+    border: 1px solid #ff6666;
+}
+
+.silenced-notification {
+    background-color: #33b249; /* Green background for silenced message */
+    color: white; /* White text color */
+    border: 1px solid darkgreen; /* Darker green border */
+  }
+  
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    max-width: 300px;
+    width: 100%;
+}
+
+ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.delete-icon {
+    width: 20px; /* Adjust size as needed */
+    height: auto; /* Maintain aspect ratio */
+    cursor: pointer; /* Change cursor to pointer */
+    margin-left: 10px; /* Spacing between time and icon */
+}
+
+/* Button inside notification, only when reminder is playing */
+.reminder-notification .silence-button {
+    display: none; /* Hidden by default */
+}
+
+.reminder-notification.reminder-active .silence-button {
+    display: inline-block; /* Only visible when reminder is active */
+    background-color: #d43a3a;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.reminder-notification.reminder-active .silence-button:hover {
+    background-color: #ff3333;
+}
+
+.silence-button {
+    background-color: #dc3545;
+    margin: 0 10px;
+}
+
+.silence-button:hover {
+    background-color: #c82333;
+}
+
+.alarm-controls {
+    margin-top: 20px;
+}
+
+.time-alert-icon{
+    width: 70px;
+    transition: transform 0.2s;
+}
+
+.time-alert-icon:hover{
+    transform: scale(1.1);
+}

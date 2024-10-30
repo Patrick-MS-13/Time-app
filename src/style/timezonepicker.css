@@ -1,4 +1,4 @@
-/* Apply glassy effect with gradient overlay */
+/* TimeZone Picker Container */
 .timezone-picker-container {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
   backdrop-filter: blur(12px);
@@ -7,22 +7,41 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.5);
   padding: 20px;
-  width: 450px; /* Set a fixed width */
-  height: 350px; /* Set a fixed height */
-  overflow: hidden; /* Prevent content overflow */
+  width: 450px;
+  height: 350px;
+  overflow: hidden;
   margin: 0 auto;
   color: rgb(0, 0, 0);
   position: relative;
   animation: glowEffect 4s infinite alternate;
 }
 
-/* Prevent dropdown width from changing */
+/* Glow effect animation */
+@keyframes glowEffect {
+  from {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 0 15px rgba(255, 255, 255, 0.5);
+  }
+  to {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 255, 255, 0.7);
+  }
+}
+
+/* Label Styling */
+.timezone-picker-container label {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: block;
+}
+
+/* Timezone Dropdown (React Select) */
 .timezone-picker-container .react-select__control {
-  width: 100%; /* Ensure dropdown takes up full width of the container */
-  max-width: 400px; /* Fixed maximum width for the dropdown */
-  white-space: nowrap; /* Prevent text wrapping */
-  overflow: hidden; /* Hide overflow */
-  text-overflow: ellipsis; /* Add ellipsis to long text */
+  width: 100%;
+  max-width: 400px;
+  white-space: nowrap;
   background-color: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 10px;
@@ -30,22 +49,22 @@
   transition: all 0.3s ease;
 }
 
-/* Glow effect on dropdown hover */
+/* Dropdown Hover Glow Effect */
 .timezone-picker-container .react-select__control:hover {
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 15px rgba(255, 255, 255, 0.6);
 }
 
-/* Style for the react-select dropdown menu */
+/* Dropdown Menu */
 .timezone-picker-container .react-select__menu {
   background-color: rgba(0, 0, 0, 0.9);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   animation: fadeInMenu 0.3s ease-in-out;
-  max-width: 400px; /* Fixed width for dropdown menu */
+  max-width: 400px;
   overflow: hidden;
 }
 
-/* Subtle fade-in animation for the dropdown menu */
+/* Dropdown Menu Fade-In Animation */
 @keyframes fadeInMenu {
   from {
     opacity: 0;
@@ -57,45 +76,42 @@
   }
 }
 
-/* Style for react-select options */
+/* Dropdown Options */
 .timezone-picker-container .react-select__option {
   color: white;
   background-color: rgba(255, 255, 255, 0.1);
   transition: background-color 0.3s ease;
-  white-space: nowrap; /* Prevent text from wrapping */
-  overflow: hidden; /* Hide overflow */
-  text-overflow: ellipsis; /* Add ellipsis to long text */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+/* Focused Dropdown Option */
 .timezone-picker-container .react-select__option--is-focused {
   background-color: rgba(255, 255, 255, 0.3);
 }
 
-/* Style for react-select placeholder */
+/* Placeholder Styling */
 .timezone-picker-container .react-select__placeholder {
   color: rgba(255, 255, 255, 0.7);
   font-style: italic;
 }
 
-/* Time display styling */
+/* Time Display (Selected Time Zone and Current Time) */
 .timezone-picker-container h3,
 .timezone-picker-container p {
   color: white;
   text-align: center;
   margin: 15px 0;
-  white-space: nowrap; /* Prevent text from wrapping */
-  overflow: hidden; /* Hide overflow */
-  text-overflow: ellipsis; /* Add ellipsis for long text */
-}
-
-/* Add pulse animation to the current time */
-.timezone-picker-container p {
-  font-size: 22px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-family: 'Courier New', Courier, monospace;
   animation: pulseTime 1.5s infinite;
+  font-weight: bold
 }
 
-/* Pulse effect for time */
+/* Pulse Effect for Time Display */
 @keyframes pulseTime {
   0% {
     transform: scale(1);
@@ -111,32 +127,45 @@
   }
 }
 
-/* Responsive adjustments for smaller screens */
+/* Current Location Time Styling */
+.current-location-time {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #000000;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 2px solid #000000;
+  border-radius: 8px;
+  background-color: rgba(52, 152, 219, 0.1);
+  text-align: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Selected Time Zone Text Styling */
+.selected-timezone {
+  font-size: 1.5rem;
+  color: #e74c3c;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Clickable Icon (Map Icon) */
+.clickable-icon {
+  cursor: pointer;
+  width: 60px;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Hover Effect for Icon */
+.clickable-icon:hover {
+  transform: scale(1.1);
+}
+
+/* Responsive Adjustments for Small Screens */
 @media (max-width: 500px) {
   .timezone-picker-container {
     padding: 15px;
-    width: 100%; /* Full width on small screens */
-    height: auto; /* Adjust height on small screens */
+    width: 100%;
+    height: auto;
   }
-}
-
-/* Animated glowing effect on the container */
-@keyframes glowEffect {
-  from {
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 0 15px rgba(255, 255, 255, 0.5);
-  }
-  to {
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 255, 255, 0.7);
-  }
-}
-
-/* Style for the label */
-.timezone-picker-container label {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 18px;
-  margin-bottom: 12px;
-  display: block;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 1px;
 }

@@ -30,11 +30,11 @@ html, body {
 }
 
 .input, .time-picker {
-  padding: 10px;
+  /* padding: 10px;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid #ccc; */
   margin: 10px 0;
-  width: 100%; /* Full width for better appearance */
+  width: 76%; /* Full width for better appearance */
   transition: border-color 0.3s ease; /* Smooth transition on focus */
 }
 
@@ -43,20 +43,6 @@ html, body {
   outline: none; /* Remove default outline */
 }
 
-.button {
-  padding: 10px 15px;
-  border-radius: 5px;
-  border: none;
-  background-color: #007bff; /* Primary button color */
-  color: #fff; /* Text color for button */
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Add transform for button */
-}
-
-.button:hover {
-  background-color: #0056b3; /* Darker shade on hover */
-  transform: scale(1.05); /* Slightly enlarge on hover */
-}
 
 .message {
   color: red; /* Red color for error messages */
@@ -223,6 +209,7 @@ ul {
 
 .timeDisplay h4 {
   font-size: 2em;
+  color: white;
 }
 
 .timeDisplay .ampm {
@@ -258,22 +245,7 @@ ul {
   border: 2px solid #000000; /* Adjust border color when checked */
 }
 
-.glassy-title {
-  font-size: 3em; /* Adjust size as needed */
-  font-weight: bold; /* Make the text bold */
-  color: white; /* Base color of the text */
-  background: linear-gradient(90deg, #6a9cff, #1e2e77); /* Gradient color */
-  -webkit-background-clip: text; /* Clip background to text */
-  -webkit-text-fill-color: transparent; /* Make text transparent to show the background */
-  text-shadow: 
-    0 0 5px rgba(255, 255, 255, 0.8), /* White glow */
-    0 0 10px rgba(255, 255, 255, 0.6), /* White glow */
-     0 0 15px rgba(0, 0, 0, 0.3); /* Slight black shadow for depth */
-  letter-spacing: 1px; /* Add space between letters */
-  text-align: center; /* Center the text */
-  margin: 20px 0; /* Add margin for spacing */
-  /* display: none; */
-}
+
 
 .container {
   display: flex;
@@ -285,7 +257,7 @@ ul {
 }
 
 .button {
-  background: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+  background: #007bff; /* Semi-transparent white background */
   padding: 10px 20px; /* Top/bottom and left/right padding */
   text-align: center; /* Center text */
   text-decoration: none; /* No underline */
@@ -299,22 +271,19 @@ ul {
 }
 
 .button:hover {
-  background: rgba(255, 255, 255, 0); /* Slightly darker background on hover */
-  border: 1px solid rgba(255, 255, 255, 0.5); /* Darker border on hover */
+  background: #0056b3(255, 255, 255); /* Slightly darker background on hover */
 }
 
-.button:active {
-  transform: scale(0.95); /* Slightly scale down when clicked */
-}
+
 
 .button-container {
   display: flex; /* Use Flexbox */
   justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically (if height is set) */
   margin-top: 20px; /* Optional: Add some space above the button */
-  flex-wrap: wrap;
-}
+  align-items: baseline;
 
+}
+/* 
 .timeDisplay:hover{
   transform: scale(1.1);
-}
+} */

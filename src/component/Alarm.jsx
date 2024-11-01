@@ -184,8 +184,6 @@ const Alarm = () => {
     <div className="container">
       {alarmMessage && <div className="notification">{alarmMessage}</div>}
 
-      {!hideTitle && showAlarmClock && <h2 className="glassy-title">Alarm Clock</h2>}
-
       <div className="timeDisplay">
         {showAlarmClock && (
           <>
@@ -214,22 +212,29 @@ const Alarm = () => {
               style={{
                 display: "flex",
                 gap: "10px",
-                justifyContent: showDeleteButton ? "space-between" : "center",
+                justifyContent: showForm || (showDeleteButton && alarms.length > 0) ? "space-between" : "center",
               }}
             >
-              <div
-                onClick={() => {
-                  setShowForm((prev) => !prev); // Toggle the form visibility
-                  setShowDeleteButton(false);
-                }}
-                style={{ cursor: "pointer", position: "relative" }}
-              >
-                <img src={add} alt="Add Alarm" width="50" height="50" />
-              </div>
-              {showDeleteButton && (
+              {/* Show Add Alarm SVG if the time picker is not showing */}
+              {!showForm && (
+                <div
+                  onClick={() => {
+                    setShowForm((prev) => !prev); // Toggle the form visibility
+                    setShowDeleteButton(false);
+                  }}
+                  style={{ cursor: "pointer", position: "relative" }}
+                  title="Add Alarm" // Tooltip for Add SVG
+                >
+                  <img src={add} alt="Add Alarm" width="50" height="50" />
+                </div>
+              )}
+
+              {/* Show Delete button only if there are alarms and showDeleteButton is true */}
+              {showDeleteButton && alarms.length > 0 && (
                 <div
                   onClick={handleDeleteClick}
                   style={{ cursor: "pointer", position: "relative" }}
+                  title="Delete Selected Alarms" // Tooltip for Delete SVG
                 >
                   <img
                     src={Delete}
@@ -240,7 +245,6 @@ const Alarm = () => {
                 </div>
               )}
             </div>
-
             {showForm && (
               <div className="button-container">
                 <input
@@ -249,7 +253,18 @@ const Alarm = () => {
                   onChange={(e) => setAlarmTime(e.target.value)}
                   className="input"
                 />
-                <button onClick={handleSetAlarm} className="button">
+                <button
+                  onClick={handleSetAlarm}
+                  className="button"
+                  style={{
+                    width: "175px",
+                    height: "46px",
+                    margin: "20px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-around",
+                  }}
+                >
                   Set Alarm
                 </button>
               </div>
@@ -290,13 +305,13 @@ const Alarm = () => {
                         <div style={{ fontSize: "0.6em", marginTop: "2px" }}>
                           {alarm.isActive
                             ? `Alarm in ${Math.floor(
-                                calculateRemainingTime(alarm) / (1000 * 60 * 60)
-                              )}h ${Math.floor(
-                                (calculateRemainingTime(alarm) % (1000 * 60 * 60)) /
-                                  (1000 * 60)
-                              )}m ${Math.floor(
-                                (calculateRemainingTime(alarm) % (1000 * 60)) / 1000
-                              )}s`
+                              calculateRemainingTime(alarm) / (1000 * 60 * 60)
+                            )}h ${Math.floor(
+                              (calculateRemainingTime(alarm) % (1000 * 60 * 60)) /
+                              (1000 * 60)
+                            )}m ${Math.floor(
+                              (calculateRemainingTime(alarm) % (1000 * 60)) / 1000
+                            )}s`
                             : "Alarm Disabled"}
                         </div>
                       </div>

@@ -4,7 +4,6 @@ import add from "./../img/add.svg"; // Import your new SVG
 import Delete from "./../img/delete.svg"; // Import your delete SVG
 import alarm from "./../img/alarm-plus-svgrepo-com.svg"; // Import your alarm SVG
 
-
 const Alarm = () => {
   const [alarmTime, setAlarmTime] = useState("");
   const [alarms, setAlarms] = useState([]); // Array to hold all alarms
@@ -14,7 +13,6 @@ const Alarm = () => {
   const [showCheckboxes, setShowCheckboxes] = useState(false); // Control checkbox display
   const [selectedAlarms, setSelectedAlarms] = useState({}); // Track selected alarms for deletion
   const [showDeleteButton, setShowDeleteButton] = useState(false); // New state for delete button visibility
-  const [hideTitle, setHideTitle] = useState(false); // New state to hide the title permanently
   const [showAlarmClock, setShowAlarmClock] = useState(false); // State to control visibility of the alarm clock
 
   useEffect(() => {

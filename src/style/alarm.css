@@ -274,8 +274,6 @@ ul {
   background: #0056b3(255, 255, 255); /* Slightly darker background on hover */
 }
 
-
-
 .button-container {
   display: flex; /* Use Flexbox */
   justify-content: center; /* Center horizontally */

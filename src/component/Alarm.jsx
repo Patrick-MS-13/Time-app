@@ -286,6 +286,7 @@ const Alarm = () => {
                           flex: 1,
                           textAlign: "left",
                           padding: "0px 100px 0px 0px",
+                          color: "white"
                         }}
                       >
                         <div

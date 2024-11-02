@@ -1,14 +1,8 @@
-
-
 .container, 
 .buttonContainer, 
 .laps {
     box-sizing: content-box; 
 }
-
-/* .container:hover {
-    transform: scale(1.02);
-} */
 
 h1 {
     font-size: 48px;
@@ -48,12 +42,23 @@ h1 {
 .button:hover {
     background-color: #0056b3;
     transform: translateY(-2px);
-    /* box-shadow: 0 0 20px rgba(0, 123, 255, 0.5); */
 }
 
 .button:active {
     background-color: #004494;
     transform: translateY(0);
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+    h1 {
+        font-size: 40px;
+    }
+
+    .button {
+        padding: 9px 18px;
+        font-size: 15px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -92,7 +97,6 @@ h1 {
     margin-top: 30px;
     width: 100%;
     max-width: 400px;
-    height: 388px;
     overflow-y: auto;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
@@ -114,6 +118,14 @@ h1 {
     list-style-type: none;
     padding: 0;
     margin: 0;
+    max-height: calc(3 * 60px); /* Set a max height based on estimated item height */
+    overflow-y: auto; /* Enable scrolling when content overflows */
+    color: transparent;
+    scrollbar-width: none; /* For Firefox */
+}
+
+.laps ul::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Edge */
 }
 
 .laps li {
@@ -126,6 +138,7 @@ h1 {
     justify-content: space-between;
     align-items: center;
     transition: transform 0.2s ease;
+    margin-top: 5px;
 }
 
 .laps li:hover {
@@ -141,6 +154,10 @@ h1 {
     font-size: 18px;
     color: #ffffff;
     font-weight: bold;
+}
+
+.list-group-item + .list-group-item {
+    border-top-width: 1px;
 }
 
 .laps li span.lap-time {
@@ -159,58 +176,14 @@ h1 {
     }
 }
 
-.deleteLapButton {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    margin-left: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px;
-    transition: transform 0.2s;
-}
+@media (max-width: 480px) {
+    .laps h2 {
+        font-size: 20px;
+    }
 
-.deleteLapButton:hover {
-    transform: scale(1.1);
-}
-
-.size-6 {
-    width: 24px;
-    height: 24px;
-    stroke: #333;
-}
-
-.deleteLapButton:hover .size-6 {
-    stroke: #000000;
-}
-
-.btn-danger {
-    --bs-btn-color: transparent;
-    --bs-btn-bg: transparent;
-    --bs-btn-border-color: transparent;
-    --bs-btn-hover-color: transparent;
-    --bs-btn-hover-bg: transparent;
-    --bs-btn-hover-border-color: transparent;
-    --bs-btn-focus-shadow-rgb: 225, 83, 97;
-    --bs-btn-active-color: transparent;
-    --bs-btn-active-bg: transparent;
-    --bs-btn-active-border-color: transparent;
-    --bs-btn-active-shadow: none;
-    --bs-btn-disabled-color: transparent;
-    --bs-btn-disabled-bg: transparent;
-    --bs-btn-disabled-border-color: transparent;
-    transition: color 0.3s ease, background-color 0.3s ease;
-}
-
-.btn-danger:hover,
-.btn-danger:active,
-.btn-danger:focus {
-    background-color: rgba(255, 0, 0, 0.1);
-    color: #fff;
-    border: none;
-    outline: none;
-    cursor: pointer;
+    .laps li {
+        font-size: 14px; /* Smaller font size for mobile */
+    }
 }
 
 .btn-danger {
@@ -222,7 +195,7 @@ h1 {
 .size-6 {
     width: 20px;
     height: 20px;
-    stroke: #333;
+    stroke: #000000;
     transition: transform 0.2s; /* Transition for the scaling effect */
 }
 
@@ -232,11 +205,11 @@ h1 {
 
 .stopwatch-svg:hover,
 .timezonepicker-svg:hover {
-  transform: rotate(360deg) scale(1.05);
-  filter: brightness(1.2);
+    transform: rotate(360deg) scale(1.05);
+    filter: brightness(1.2);
 }
 
 .stopwatch-svg:active,
 .timezonepicker-svg:active {
-  transform: scale(0.95);
+    transform: scale(0.95);
 }

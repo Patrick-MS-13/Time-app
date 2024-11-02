@@ -285,3 +285,12 @@ ul {
 .timeDisplay:hover{
   transform: scale(1.1);
 } */
+
+/* Media query for mobile adjustments */
+@media (max-width: 480px) {
+  .notification {
+    width: 90%; /* Ensure it doesn't exceed the screen width */
+    left: 50%; /* Centering */
+    transform: translate(-50%, 0); /* Adjust to keep it centered */
+  }
+}

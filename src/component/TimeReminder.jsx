@@ -10,7 +10,7 @@ const TimeReminder = () => {
   const [reminderMessage, setReminderMessage] = useState(""); // Notification message
   const [reminderAudio, setReminderAudio] = useState(null); // Store the audio object for silencing
   const [isReminderPlaying, setIsReminderPlaying] = useState(false); // Track if the reminder is playing
-  const [currentReminderId, setCurrentReminderId] = useState(null); // Track current ringing reminder ID
+  //const [currentReminderId, setCurrentReminderId] = useState(null); // Track current ringing reminder ID
   const [activeNotification, setActiveNotification] = useState(null); // Track active notification
   const [isSilenced, setIsSilenced] = useState(false); // Track if reminder is silenced
   const [showTimeReminder, setShowTimeReminder] = useState(false); // Control visibility of the reminder component
@@ -119,7 +119,7 @@ const TimeReminder = () => {
         console.error("Error playing audio:", err);
       });
       setIsReminderPlaying(true);
-      setCurrentReminderId(id);
+      //setCurrentReminderId(id);
       const message = `Reminder: It's now ${formatTime12Hour(reminderDate)}`;
       showNotification(message, true);
     }, timeDifference);

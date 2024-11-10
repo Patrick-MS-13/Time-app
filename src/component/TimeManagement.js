@@ -18,17 +18,21 @@ const TimeManagement = () => {
         setCurrentTool(tool); // Set the current tool to the selected one
     };
 
+    // Function to handle back button click
+    const handleBackButtonClick = () => {
+        setCurrentTool(null); // Reset the tool selection to go back to the main screen
+    };
+
     return (
-        <div className="app-container"> {/* Updated class for styling */}
+        <div className="app-container">
             <Background /> {/* Include Background component for stars and moon */}
-            
+
             {/* Conditionally render the "Time Management App" title only when no tool is selected */}
             {!currentTool && <h1 className="app-title">Time Management App</h1>}
 
             {/* Conditionally render the icons (main page) or the selected tool */}
             {!currentTool ? (
-                <div className="icon-container"> {/* Updated class for styling */}
-                    {/* Icons for each tool */}
+                <div className="icon-container">
                     <img
                         src={StopwatchIcon} // Stopwatch icon
                         alt="Stopwatch"
@@ -64,6 +68,28 @@ const TimeManagement = () => {
                     {currentTool === "alarm" && <Alarm />}
                     {currentTool === "timezonePicker" && <TimeZonePicker />}
                     {currentTool === "timeReminder" && <TimeReminder />}
+
+                    {/* Back button to return to the main page */}
+                    <button
+                        onClick={handleBackButtonClick}
+                        className="back-button"
+                        style={{
+                            position: "absolute",
+                            bottom: "20px",
+                            left: "50%",
+                            transform: "translateX(-50%)",
+                            padding: "10px 20px",
+                            borderRadius: "5px",
+                            background: "#007bff",
+                            color: "#fff",
+                            border: "none",
+                            cursor: "pointer",
+                            transition: "background-color 0.3s ease", // Smooth transition effect for hover
+                        }}
+                    >
+                        Back
+                    </button>
+
                 </div>
             )}
         </div>

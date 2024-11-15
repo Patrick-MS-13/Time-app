@@ -29,7 +29,7 @@ const Alarm = () => {
   
   useEffect(() => {
     checkAlarms(currentTime);
-  }, [currentTime, alarms]); /
+  }, [currentTime, alarms]); 
 
   // Function to stop the alarm
 const stopAlarm = () => {

@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import "./../style/alarm.css"; // Ensure your CSS file is correctly linked
 import add from "./../img/add.svg"; // Import your new SVG
 import Delete from "./../img/delete.svg"; // Import your delete SVG
 import alarm from "./../img/alarm-plus-svgrepo-com.svg"; // Import your alarm SVG
-// import labeltag from "./../img/label.svg"
-// import sound from "./../audio/reminder.mp3"
 
 const Alarm = () => {
   const [alarmTime, setAlarmTime] = useState("");
@@ -16,54 +14,18 @@ const Alarm = () => {
   const [selectedAlarms, setSelectedAlarms] = useState({}); // Track selected alarms for deletion
   const [showDeleteButton, setShowDeleteButton] = useState(false); // New state for delete button visibility
   const [showAlarmClock, setShowAlarmClock] = useState(false); // State to control visibility of the alarm clock
-  const [ringingAlarmId, setRingingAlarmId] = useState(null); 
-  // const audio = new Audio(sound); // Create audio instance
-
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentTime(new Date());
+      const now = new Date();
+      setCurrentTime(now);
+      checkAlarms(now); // Pass current time to check alarms
     }, 1000);
+
     return () => clearInterval(interval);
-  }, []); // Removed dependency on alarms
-  
-  useEffect(() => {
-    checkAlarms(currentTime);
-  }, [currentTime, alarms,checkAlarms()]); 
+  }, [alarms]); // Only depend on alarms
 
-  // Function to stop the alarm
-const stopAlarm = () => {
-  setAlarms((prevAlarms) =>
-    prevAlarms.map((alarm) => {
-      if (alarm.id === ringingAlarmId) {
-        return { ...alarm, isActive: false }; // Deactivate the ringing alarm
-      }
-      return alarm;
-    })
-  );
-  setRingingAlarmId(null); // Clear the ringing alarm ID
-};
-
-// Function to snooze the alarm for 5 minutes
-const snoozeAlarm = () => {
-  setAlarms((prevAlarms) =>
-    prevAlarms.map((alarm) => {
-      if (alarm.id === ringingAlarmId) {
-        const [hours, minutes] = alarm.time24.split(":").map(Number);
-        const snoozedTime = new Date();
-        snoozedTime.setHours(hours);
-        snoozedTime.setMinutes(minutes + 5);
-        const newTime24 = `${snoozedTime.getHours().toString().padStart(2, "0")}:${snoozedTime.getMinutes().toString().padStart(2, "0")}`;
-        return { ...alarm, time24: newTime24 };
-      }
-      return alarm;
-    })
-  );
-  setRingingAlarmId(null);
-};
-
-const checkAlarms = useCallback(
-  (now) => {
+  const checkAlarms = (now) => {
     setAlarms((prevAlarms) =>
       prevAlarms.map((alarm) => {
         const [alarmHours, alarmMinutes] = alarm.time24.split(":").map(Number);
@@ -75,31 +37,30 @@ const checkAlarms = useCallback(
           alarmMinutes
         );
 
+        if (alarmDate < now) {
+          alarmDate.setDate(alarmDate.getDate() + 1); // Set for the next day if time has passed
+        }
+
+        // Check if the alarm should ring
         if (
           now.getHours() === alarmHours &&
           now.getMinutes() === alarmMinutes &&
           alarm.isActive
         ) {
-          setRingingAlarmId(alarm.id); // Set ringing alarm
+          // Alarm is ringing, disable it
+          setAlarmMessage(`Alarm ringing for ${alarm.time12}!`);
+          return { ...alarm, isActive: false }; // Turn off the alarm after it rings
         }
 
-        if (alarmDate < now) {
-          alarmDate.setDate(alarmDate.getDate() + 1); // Adjust for the next day
-        }
-
-        // Return alarm unchanged for now; implement disabling logic if needed
-        return alarm;
+        return alarm; // Return unchanged if the alarm shouldn't ring yet
       })
     );
 
     // Clear the alarm message after 5 seconds
     setTimeout(() => {
-      setAlarmMessage(""); // Clear alarm message
+      setAlarmMessage("");
     }, 5000);
-  },
-  [setAlarms, setRingingAlarmId, setAlarmMessage] // Add dependencies here
-);
-
+  };
 
   const handleSetAlarm = () => {
     if (alarmTime) {
@@ -220,14 +181,6 @@ const checkAlarms = useCallback(
   return (
     <div className="container">
       {alarmMessage && <div className="notification">{alarmMessage}</div>}
-
-      {ringingAlarmId && (
-    <div className="notification">
-        <p>Alarm ringing for {alarms.find(alarm => alarm.id === ringingAlarmId)?.time12}!</p>
-        <button onClick={stopAlarm} className="stop-button">Stop</button>
-        <button onClick={snoozeAlarm} className="snooze-button">Snooze</button>
-    </div>
-)}
 
       <div className="timeDisplay">
         {showAlarmClock && (

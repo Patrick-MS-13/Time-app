@@ -19,7 +19,50 @@ const Alarm = () => {
   const [ringingAlarmId, setRingingAlarmId] = useState(null); 
   // const audio = new Audio(sound); // Create audio instance
 
-const checkAlarms = (now) => {
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []); // Removed dependency on alarms
+  
+  useEffect(() => {
+    checkAlarms(currentTime);
+  }, [currentTime, alarms]); /
+
+  // Function to stop the alarm
+const stopAlarm = () => {
+  setAlarms((prevAlarms) =>
+    prevAlarms.map((alarm) => {
+      if (alarm.id === ringingAlarmId) {
+        return { ...alarm, isActive: false }; // Deactivate the ringing alarm
+      }
+      return alarm;
+    })
+  );
+  setRingingAlarmId(null); // Clear the ringing alarm ID
+};
+
+// Function to snooze the alarm for 5 minutes
+const snoozeAlarm = () => {
+  setAlarms((prevAlarms) =>
+    prevAlarms.map((alarm) => {
+      if (alarm.id === ringingAlarmId) {
+        const [hours, minutes] = alarm.time24.split(":").map(Number);
+        const snoozedTime = new Date();
+        snoozedTime.setHours(hours);
+        snoozedTime.setMinutes(minutes + 5);
+        const newTime24 = `${snoozedTime.getHours().toString().padStart(2, "0")}:${snoozedTime.getMinutes().toString().padStart(2, "0")}`;
+        return { ...alarm, time24: newTime24 };
+      }
+      return alarm;
+    })
+  );
+  setRingingAlarmId(null);
+};
+
+  const checkAlarms = (now) => {
     setAlarms((prevAlarms) =>
       prevAlarms.map((alarm) => {
         const [alarmHours, alarmMinutes] = alarm.time24.split(":").map(Number);
@@ -72,49 +115,6 @@ const checkAlarms = (now) => {
       setAlarmMessage("");
     }, 5000);
   };
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const now = new Date();
-      setCurrentTime(now);
-      //checkAlarms(now); // Pass current time to check alarms
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [alarms]); // Only depend on alarms
-
-  // Function to stop the alarm
-const stopAlarm = () => {
-  setAlarms((prevAlarms) =>
-    prevAlarms.map((alarm) => {
-      if (alarm.id === ringingAlarmId) {
-        return { ...alarm, isActive: false }; // Deactivate the ringing alarm
-      }
-      return alarm;
-    })
-  );
-  setRingingAlarmId(null); // Clear the ringing alarm ID
-};
-
-// Function to snooze the alarm for 5 minutes
-const snoozeAlarm = () => {
-  setAlarms((prevAlarms) =>
-    prevAlarms.map((alarm) => {
-      if (alarm.id === ringingAlarmId) {
-        const [hours, minutes] = alarm.time24.split(":").map(Number);
-        const snoozedTime = new Date();
-        snoozedTime.setHours(hours);
-        snoozedTime.setMinutes(minutes + 5);
-        const newTime24 = `${snoozedTime.getHours().toString().padStart(2, "0")}:${snoozedTime.getMinutes().toString().padStart(2, "0")}`;
-        return { ...alarm, time24: newTime24 };
-      }
-      return alarm;
-    })
-  );
-  setRingingAlarmId(null);
-};
-
-  
 
   const handleSetAlarm = () => {
     if (alarmTime) {

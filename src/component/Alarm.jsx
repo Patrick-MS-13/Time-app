@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./../style/alarm.css"; // Ensure your CSS file is correctly linked
 import add from "./../img/add.svg"; // Import your new SVG
 import Delete from "./../img/delete.svg"; // Import your delete SVG
@@ -29,7 +29,7 @@ const Alarm = () => {
   
   useEffect(() => {
     checkAlarms(currentTime);
-  }, [currentTime, alarms]); 
+  }, [currentTime, alarms,checkAlarms]); 
 
   // Function to stop the alarm
 const stopAlarm = () => {
@@ -62,7 +62,8 @@ const snoozeAlarm = () => {
   setRingingAlarmId(null);
 };
 
-  const checkAlarms = (now) => {
+const checkAlarms = useCallback(
+  (now) => {
     setAlarms((prevAlarms) =>
       prevAlarms.map((alarm) => {
         const [alarmHours, alarmMinutes] = alarm.time24.split(":").map(Number);
@@ -73,48 +74,32 @@ const snoozeAlarm = () => {
           alarmHours,
           alarmMinutes
         );
-  
+
         if (
           now.getHours() === alarmHours &&
           now.getMinutes() === alarmMinutes &&
           alarm.isActive
         ) {
-          setRingingAlarmId(alarm.id);
+          setRingingAlarmId(alarm.id); // Set ringing alarm
         }
 
         if (alarmDate < now) {
-          alarmDate.setDate(alarmDate.getDate() + 1); // Set for the next day if time has passed
+          alarmDate.setDate(alarmDate.getDate() + 1); // Adjust for the next day
         }
 
-        const stopAlarm = () => {
-          setAlarms((prev) =>
-            prev.map((alarm) =>
-              alarm.id === ringingAlarmId ? { ...alarm, isActive: false } : alarm
-            )
-          );
-          setRingingAlarmId(null); // Reset the ringing alarm
-        };
-
-        // Check if the alarm should ring
-        if (
-          now.getHours() === alarmHours &&
-          now.getMinutes() === alarmMinutes &&
-          alarm.isActive
-        ) {
-          // Alarm is ringing, disable it
-          // setAlarmMessage(`Alarm ringing for ${alarm.time12}!`);
-          // return { ...alarm, isActive: false }; // Turn off the alarm after it rings
-        }
-
-        return alarm; // Return unchanged if the alarm shouldn't ring yet
+        // Return alarm unchanged for now; implement disabling logic if needed
+        return alarm;
       })
     );
 
     // Clear the alarm message after 5 seconds
     setTimeout(() => {
-      setAlarmMessage("");
+      setAlarmMessage(""); // Clear alarm message
     }, 5000);
-  };
+  },
+  [setAlarms, setRingingAlarmId, setAlarmMessage] // Add dependencies here
+);
+
 
   const handleSetAlarm = () => {
     if (alarmTime) {

@@ -28,7 +28,7 @@ const Alarm = () => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [alarms]); // Only depend on alarms
+  }, [alarms,checkAlarms]); // Only depend on alarms
 
   // Function to stop the alarm
 const stopAlarm = () => {

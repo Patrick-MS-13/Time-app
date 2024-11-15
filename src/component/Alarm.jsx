@@ -3,8 +3,8 @@ import "./../style/alarm.css"; // Ensure your CSS file is correctly linked
 import add from "./../img/add.svg"; // Import your new SVG
 import Delete from "./../img/delete.svg"; // Import your delete SVG
 import alarm from "./../img/alarm-plus-svgrepo-com.svg"; // Import your alarm SVG
-import labeltag from "./../img/label.svg"
-import sound from "./../audio/reminder.mp3"
+// import labeltag from "./../img/label.svg"
+// import sound from "./../audio/reminder.mp3"
 
 const Alarm = () => {
   const [alarmTime, setAlarmTime] = useState("");
@@ -17,7 +17,7 @@ const Alarm = () => {
   const [showDeleteButton, setShowDeleteButton] = useState(false); // New state for delete button visibility
   const [showAlarmClock, setShowAlarmClock] = useState(false); // State to control visibility of the alarm clock
   const [ringingAlarmId, setRingingAlarmId] = useState(null); 
-  const audio = new Audio(sound); // Create audio instance
+  // const audio = new Audio(sound); // Create audio instance
 
 
   useEffect(() => {

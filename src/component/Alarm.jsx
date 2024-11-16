@@ -25,6 +25,7 @@ const Alarm = () => {
     return () => clearInterval(interval);
   }, [alarms]); // Only depend on alarms
 
+  
   const checkAlarms = (now) => {
     setAlarms((prevAlarms) =>
       prevAlarms.map((alarm) => {

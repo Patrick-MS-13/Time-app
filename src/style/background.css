@@ -8,6 +8,7 @@ html, body {
   position: relative;
   background: radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.1), transparent 300px),
               linear-gradient(to bottom, #020111 10%, #19162c 40%, #0a3d62 100%); /* Sky gradient */
+  cursor: none;
 }
 
 /* Twinkling effect for stars */

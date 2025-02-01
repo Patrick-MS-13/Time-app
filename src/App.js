@@ -6,7 +6,7 @@ import Cursor from './component/Cursor';
 function App() {
   return (
     <div className="app-container">
-      <Cursor/>
+      {/* <Cursor/> */}
       <TimeManagement /> 
     </div>
   );

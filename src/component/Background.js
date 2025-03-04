@@ -64,7 +64,7 @@ const Background = () => {
           top: "1%",
           left: "80%",
           transform: "translateX(-50%)",
-          textShadow: "0 0 20px rgba(255, 255, 255, 0.5)"
+          textShadow: "rgb(233 233 39 / 94%) 0px 0px 40px"
         }}
       >
         🌙

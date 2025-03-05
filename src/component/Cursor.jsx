@@ -72,7 +72,7 @@ const Cursor = () => {
     return null; // Don't render the cursor on mobile screens
   }
 
-  return <div className="cursor"></div>; // Render the cursor for larger screens
+  // return <div className="cursor"></div>; 
 };
 
 export default Cursor;
